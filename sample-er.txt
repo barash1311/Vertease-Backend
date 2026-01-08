@@ -1,0 +1,89 @@
+Table users {
+  id bigint [pk, increment]
+  name varchar(100)
+  email varchar(100) [unique, not null]
+  password varchar(255)
+  role varchar(20) // PATIENT / DOCTOR / ADMIN
+  enabled boolean
+  approved boolean
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_entries {
+  id bigint [pk, increment]
+  patient_id bigint [not null]
+  entered_by varchar(20) // PATIENT / DOCTOR
+
+  age int
+  sex varchar(20)
+
+  comorbidities text        // JSON
+  primary_symptom varchar(50)
+
+  onset_type varchar(20)    // Sudden / Gradual
+  total_duration varchar(50)
+  motion_type varchar(50)   // Spinning / Back-and-forth
+  pattern_type varchar(20)  // Episodic / Persistent
+
+  episode_duration varchar(50)
+  remission_type varchar(50)
+
+  triggers text             // JSON
+  associated_symptoms text  // JSON
+
+  ear_symptoms text         // JSON
+  cerebellar_symptoms text  // JSON
+  cranial_nerve_symptoms text // JSON
+
+  drug_history text         // JSON
+  post_onset_medications text // JSON
+
+  created_at timestamp
+}
+
+Table examinations {
+  id bigint [pk, increment]
+  patient_id bigint [not null]
+  doctor_id bigint [not null]
+
+  clinical_findings text    // TEXT / JSON
+  diagnosis_by_doctor varchar(200)
+  notes text
+  status varchar(20)        // PENDING / COMPLETED
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table ml_analyses {
+  id bigint [pk, increment]
+  examination_id bigint [unique, not null]
+
+  predicted_diagnosis varchar(200)
+  confidence_score double
+  model_version varchar(20)
+  metadata text             // JSON
+  status varchar(20)        // PENDING / VERIFIED / REJECTED
+
+  created_at timestamp
+}
+
+Table verifications {
+  id bigint [pk, increment]
+  ml_analysis_id bigint [unique, not null]
+  verified_by_user_id bigint [not null]
+
+  is_correct boolean
+  corrected_diagnosis varchar(200)
+  comments text
+  quality_rating int
+  verified_at timestamp
+}
+
+Ref: user_entries.patient_id > users.id
+Ref: examinations.patient_id > users.id
+Ref: examinations.doctor_id > users.id
+Ref: ml_analyses.examination_id > examinations.id
+Ref: verifications.ml_analysis_id > ml_analyses.id
+Ref: verifications.verified_by_user_id > users.id
