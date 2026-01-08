@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 @Builder
 public class MLAnalysis {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @OneToOne
     @JoinColumn(name = "examination_id",nullable = false)

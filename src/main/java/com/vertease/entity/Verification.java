@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 @Builder
 public class Verification {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     @OneToOne
     @JoinColumn(name = "ml_analysis_id",nullable = false)
     private MLAnalysis mlAnalysis;
