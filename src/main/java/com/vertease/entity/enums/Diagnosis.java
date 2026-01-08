@@ -1,0 +1,13 @@
+package com.vertease.entity.enums;
+
+public enum Diagnosis {
+    BPPV,
+    VESTIBULAR_NEURITIS,
+    LABYRINTHITIS,
+    MENIERES_DISEASE,
+    VESTIBULAR_MIGRAINE,
+    CENTRAL_VERTIGO,
+    PERILYMPH_FISTULA,
+    PSYCHOGENIC_DIZZINESS,
+    UNSPECIFIED
+}

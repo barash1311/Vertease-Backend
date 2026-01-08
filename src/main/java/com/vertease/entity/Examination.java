@@ -1,9 +1,8 @@
 package com.vertease.entity;
 
-import com.vertease.entity.enums.Role;
+import com.vertease.entity.enums.Diagnosis;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,35 +11,38 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = "examinations")
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Examination {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "patient_id",nullable = false)
+    private User patient;
 
-    @Column(unique = true)
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "doctor_id",nullable = false)
+    private User doctor;
 
-    @Column(nullable = false)
-    private String password;
+    @Column(columnDefinition = "TEXT")
+    private String clinicalFindings;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
+    private Diagnosis diagnosisByDoctor;
 
-    private boolean enabled;
-    private boolean approved;
+    @Column(columnDefinition = "TEXT")
+    private String notes;
 
+    @Column(length = 20)
+    private String status;
     @CreationTimestamp
     private LocalDateTime createdAt;
-
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+
 }

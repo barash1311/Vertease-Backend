@@ -1,6 +1,6 @@
 package com.vertease.entity;
 
-import com.vertease.entity.enums.Role;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,35 +12,28 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = "ml_analysis")
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Builder
+public class MLAnalysis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
 
-    @Column(nullable = false)
-    private String name;
+    @OneToOne
+    @JoinColumn(name = "examination_id",nullable = false)
+    private Examination examination;
 
-    @Column(unique = true)
-    private String email;
+    @Column(length = 200)
+    private String predictedDiagnosis;
+    private Double confidenceScore;
 
-    @Column(nullable = false)
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
-
-    private boolean enabled;
-    private boolean approved;
-
+    @Column(length = 50)
+    private String modelVersion;
     @CreationTimestamp
     private LocalDateTime createdAt;
-
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 }
