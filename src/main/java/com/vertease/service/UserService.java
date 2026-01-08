@@ -29,7 +29,6 @@ public class UserService {
                 .build();
         User savedUser=userRepository.save(user);
         return mapToResponse(savedUser);
-
     }
 
     private RegisterResponse mapToResponse(User savedUser) {
@@ -45,10 +44,8 @@ public class UserService {
     }
 
     public LoginResponse login(LoginRequest loginRequest) {
-        User user=userRepository.findByEmail(loginRequest.getEmail());
-        if(user==null){
-            throw new RuntimeException("Invalid Credentials");
-        }
+        User user = userRepository.findByEmail(loginRequest.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
         if(loginRequest.getPassword()==null){
             throw new RuntimeException("Invalid Credentials");
         }
@@ -62,5 +59,23 @@ public class UserService {
     public RegisterResponse getUserByEmail(String email) {
         User user = userRepository.findByEmail(email).orElseThrow(()->new RuntimeException("User not found"));
         return mapToResponse(user);
+    }
+
+    public Boolean checkEmail(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
+
+    public RegisterResponse approveDoctor(String id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setApproved(true);
+        userRepository.save(user);
+        return mapToResponse(user);
+    }
+
+    public void deleteUserById(String id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        userRepository.delete(user);
     }
 }
