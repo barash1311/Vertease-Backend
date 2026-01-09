@@ -1,41 +1,25 @@
-package com.vertease.entity;
+package com.vertease.dto.userentry;
 
 import com.vertease.entity.enums.Sex;
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "user_entries")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class UserEntry {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+public class UserEntryResponse {
     private String id;
-
-    @ManyToOne
-    @JoinColumn(name = "patient_id",nullable = false)
-    private User patient;
-
-    @Column(nullable = false)
+    private String patientId;
     private String enteredBy;
-
     private Integer age;
-    @Enumerated(EnumType.STRING)
     private Sex sex;
-
-    @Column(columnDefinition = "TEXT")
     private String comorbidities;
-
     private String primarySymptom;
     private String totalDuration;
     private String motionType;
@@ -43,22 +27,12 @@ public class UserEntry {
     private String episodeDuration;
     private String remissionType;
     private String triggers;
-    @Column(columnDefinition = "TEXT")
     private String associatedSymptoms;
-    @Column(columnDefinition = "TEXT")
     private String earSymptoms;
-    @Column(columnDefinition = "TEXT")
     private String cerebellarSymptoms;
-    @Column(columnDefinition = "TEXT")
     private String cranialNerveSymptoms;
-    @Column(columnDefinition = "TEXT")
     private String drugHistory;
-    @Column(columnDefinition = "TEXT")
     private String postOnsetMedications;
-    @CreationTimestamp
     private LocalDateTime createdAt;
-    @UpdateTimestamp
-    private  LocalDateTime updatedAt;
-
 
 }

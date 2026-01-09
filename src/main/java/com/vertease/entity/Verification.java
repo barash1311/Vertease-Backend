@@ -10,7 +10,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "verifications")
+@Table(name = "verifications",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "ml_analysis_id")
+})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
