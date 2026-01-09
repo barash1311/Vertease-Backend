@@ -1,4 +1,4 @@
-package com.vertease.controller;
+package com.vertease.controller.mlcontroller;
 
 import com.vertease.service.MLAnalysisService;
 import lombok.RequiredArgsConstructor;

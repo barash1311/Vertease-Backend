@@ -1,10 +1,10 @@
-package com.vertease.controller;
+package com.vertease.controller.auth;
 
 import com.vertease.dto.login.LoginRequest;
 import com.vertease.dto.login.LoginResponse;
 import com.vertease.dto.register.RegisterRequest;
 import com.vertease.dto.register.RegisterResponse;
-import com.vertease.service.UserService;
+import com.vertease.service.roles.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,14 +1,14 @@
-package com.vertease.service;
+package com.vertease.service.roles;
 
 import com.vertease.dto.login.LoginRequest;
 import com.vertease.dto.login.LoginResponse;
 import com.vertease.dto.register.RegisterRequest;
 import com.vertease.dto.register.RegisterResponse;
+import com.vertease.dto.update.UpdateProfileRequest;
 import com.vertease.entity.User;
 import com.vertease.entity.enums.Role;
 import com.vertease.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -77,5 +77,20 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         userRepository.delete(user);
+    }
+
+    public RegisterResponse getProfile(String id) {
+        User user=userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found"));
+        return mapToResponse(user);
+
+    }
+
+    public RegisterResponse updateProfile(String id, UpdateProfileRequest updatedUser) {
+        User user=userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
+        user.setEmail(updatedUser.getEmail());
+        user.setName(updatedUser.getName());
+        userRepository.save(user);
+        return mapToResponse(user);
+
     }
 }

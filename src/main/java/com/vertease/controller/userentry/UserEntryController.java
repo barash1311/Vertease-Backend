@@ -1,4 +1,4 @@
-package com.vertease.controller;
+package com.vertease.controller.userentry;
 
 import com.vertease.service.UserEntryService;
 import lombok.RequiredArgsConstructor;

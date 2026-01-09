@@ -1,4 +1,4 @@
-package com.vertease.controller;
+package com.vertease.controller.verification;
 
 import com.vertease.service.VerificationService;
 import lombok.RequiredArgsConstructor;
