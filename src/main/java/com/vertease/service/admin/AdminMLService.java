@@ -4,13 +4,17 @@ import com.vertease.dto.analysis.MLAnalysisResponse;
 import com.vertease.entity.Examination;
 import com.vertease.entity.MLAnalysis;
 import com.vertease.entity.Verification;
+import com.vertease.ml.data.ModelTrainer;
+import com.vertease.ml.data.TrainingDataBuilder;
 import com.vertease.repository.ExaminationRepository;
 import com.vertease.repository.MLAnalysisRepository;
 import com.vertease.repository.VerificationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import weka.core.Instances;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -63,4 +67,14 @@ public class AdminMLService {
                     ? "ML analysis verified as correct"
                     : "ML analysis marked as incorrect";
         }
+    public void retrainModel() {
+        List<Verification> verified =
+                verificationRepository.findByIsCorrectTrue();
+        TrainingDataBuilder trainingDataBuilder = new TrainingDataBuilder();
+        Instances trainingData =
+                trainingDataBuilder.buildTrainingSet(verified);
+
+        ModelTrainer.trainAndSave(trainingData);
+    }
+
 }

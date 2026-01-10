@@ -12,4 +12,6 @@ public interface VerificationRepository extends JpaRepository<Verification,Strin
     List<Verification> findByIsCorrect(boolean isCorrect);
     List<Verification> findByMlAnalysisId(String mlAnalysisId);
     boolean existsByMlAnalysisId(String analysisId);
+
+    List<Verification> findByIsCorrectTrue();
 }

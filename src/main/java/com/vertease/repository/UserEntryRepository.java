@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserEntryRepository extends JpaRepository<UserEntry,String> {
     List<UserEntry> findByPatientId(String patientId);
+    Optional<UserEntry> findTopByPatient_IdOrderByCreatedAtDesc(String patient_id);
 }

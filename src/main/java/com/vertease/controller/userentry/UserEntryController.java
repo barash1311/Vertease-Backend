@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-
+@RequestMapping("/api/user-entries")
 @RequiredArgsConstructor
 public class UserEntryController {
     private final UserEntryService userEntryService;
