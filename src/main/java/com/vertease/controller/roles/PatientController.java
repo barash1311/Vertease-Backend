@@ -1,10 +1,9 @@
 package com.vertease.controller.roles;
 
-import com.vertease.dto.register.RegisterResponse;
+
 import com.vertease.entity.Examination;
 import com.vertease.entity.MLAnalysis;
 import com.vertease.service.roles.PatientService;
-import com.vertease.service.roles.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

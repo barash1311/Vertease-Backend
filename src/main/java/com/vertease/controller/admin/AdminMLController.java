@@ -30,3 +30,4 @@ public class AdminMLController {
         return ResponseEntity.ok(adminMLService.verifyMLAnalysis(analysisId, isCorrect));
     }
 }
+
