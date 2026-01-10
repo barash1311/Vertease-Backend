@@ -15,28 +15,28 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCTOR')")
     @GetMapping
     public ResponseEntity<List<RegisterResponse>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/by-email")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCTOR')")
     public ResponseEntity<RegisterResponse> getUserByEmail(@RequestParam String email){
         return ResponseEntity.ok(userService.getUserByEmail(email));
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/check-email")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Boolean> checkEmail(@RequestParam String email){
         return ResponseEntity.ok(userService.checkEmail(email));
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}/approve")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<RegisterResponse> approveDoctor(@PathVariable String id){
         return ResponseEntity.ok(userService.approveDoctor(id));
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<RegisterResponse> deleteUserById(@PathVariable String id){
         userService.deleteUserById(id);
         return ResponseEntity.noContent().build();

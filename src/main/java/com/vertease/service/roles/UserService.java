@@ -8,6 +8,7 @@ import com.vertease.dto.update.UpdateProfileRequest;
 import com.vertease.entity.User;
 import com.vertease.entity.enums.Role;
 import com.vertease.repository.UserRepository;
+import com.vertease.security.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final JwtUtils jwtUtils;
 
 
     public RegisterResponse register(RegisterRequest registerRequest) {
@@ -49,7 +51,9 @@ public class UserService {
         if(loginRequest.getPassword()==null){
             throw new RuntimeException("Invalid Credentials");
         }
-        return new LoginResponse("Login Successful",mapToResponse(user));
+        String accessToken = jwtUtils.generateAccessToken(user.getEmail(), user.getRole().name());
+        String refreshToken = jwtUtils.generateRefreshToken(user.getEmail(), user.getRole().name());
+        return new LoginResponse(accessToken, refreshToken, mapToResponse(user));
     }
 
     public List<RegisterResponse> getAllUsers() {
