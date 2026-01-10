@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 @RequestMapping("/api/admin/ml")
 @RequiredArgsConstructor
 public class AdminMLController {
-
-
     private final AdminMLService adminMLService;
 
     // Create ML analysis manually for an examination
@@ -30,4 +28,3 @@ public class AdminMLController {
         return ResponseEntity.ok(adminMLService.verifyMLAnalysis(analysisId, isCorrect));
     }
 }
-
