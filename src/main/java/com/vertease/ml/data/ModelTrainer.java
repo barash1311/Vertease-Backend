@@ -12,7 +12,7 @@ public class ModelTrainer {
 
         try {
             RandomForest model = new RandomForest();
-            model.setNumTrees(100);
+            model.setNumIterations(100);
             model.buildClassifier(trainingData);
 
             SerializationHelper.write(

@@ -21,7 +21,7 @@ public class ExaminationController {
     private final ExaminationService examinationService;
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN','DOCTOR')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCTOR','PATIENT')")
     public ResponseEntity<ExaminationResponse> create(@RequestBody ExaminationRequest request) {
         return ResponseEntity.ok(examinationService.create(request));
     }
@@ -53,4 +53,5 @@ public class ExaminationController {
         examinationService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 }
