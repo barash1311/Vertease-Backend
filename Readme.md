@@ -152,16 +152,4 @@ Run unit and integration tests using:
 ## Contact 📬
 
 - Project maintainer (from OpenAPI metadata): Barash Sharma — barash1311@gmail.com
-
-## License ⚖️
-
-Add a LICENSE file to clearly state project licensing (MIT, Apache 2.0, etc.).
-
----
-
-If you want, I can:
-- Generate a `README.md` (same content) instead of `readmn.md`,
-- Add a short example project diagram or quickstart script,
-- Or include a checklist for production hardening (secrets, DB migrations, observability).
-
-Tell me which of the above you'd like me to add next.
+--
