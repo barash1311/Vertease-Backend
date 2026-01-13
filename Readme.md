@@ -21,7 +21,7 @@ Vertease Backend implements the server-side for the Vertease project, a prototyp
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [Contact](#contact)
-- [License](#license)
+
 
 ---
 
