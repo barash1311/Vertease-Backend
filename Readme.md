@@ -149,7 +149,4 @@ Run unit and integration tests using:
 - Fork the repo, create a feature branch, add tests, and open a PR with a clear description.
 - Follow existing code patterns (DTOs, services, repositories) and keep controller methods focused and small.
 
-## Contact 📬
 
-- Project maintainer (from OpenAPI metadata): Barash Sharma — barash1311@gmail.com
---
