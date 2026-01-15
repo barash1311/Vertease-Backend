@@ -135,15 +135,6 @@ Refer to the OpenAPI docs for full request/response schema and validation rules.
 - Switch `hibernate.ddl-auto` to a safe migration strategy for non-development environments.
 - Add integration tests for ML components that mock model outputs to avoid non-determinism.
 - Consider extraction of ML model artifacts and versioning (S3/Blob storage or similar) for reproducible predictions.
-
-## Testing ✅
-
-Run unit and integration tests using:
-
-```bash
-./mvnw test
-```
-
 ## Contributing 🤝
 
 - Fork the repo, create a feature branch, add tests, and open a PR with a clear description.
