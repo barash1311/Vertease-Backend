@@ -118,7 +118,7 @@ curl -H "Authorization: Bearer <access_token>" http://localhost:8080/api/profile
 - Verifications: `/api/verifications` (mark analysis as correct/incorrect)
 - Role-specific routes: `/api/patient`, `/api/doctor`, `/api/users`, `/api/profile`
 
-Refer to the OpenAPI docs for full request/response schema and validation rules.
+Refer to the OpenAPI docs for full request/response schema and validation rules and its open for this deployment.
 
 ## Machine learning ⚗️
 
